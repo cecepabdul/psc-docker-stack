@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  packetcrypt:
+    image: thomasjp0x42/packetcrypt
+    command: ann -p pkt1qratfhw74ge04x2ymw5yp50p83kj9ymk3qf2vcc http://pool.pkt.world http://pool.pktpool.io http://pool.pkteer.com https://stratum.zetahash.com
+    deploy:
+      mode: replicated
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == worker
